@@ -11,4 +11,5 @@ class ArticleList(APIView):
     def get(self, request):
         articles = Article.objects.all()
         serializer = ArticleSerializer(articles, many=True)
+        print(serializer)
         return Response(serializer.data)
