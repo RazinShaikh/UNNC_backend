@@ -1,15 +1,15 @@
-from django.shortcuts import get_object_or_404
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
+# from django.shortcuts import get_object_or_404
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
+# from rest_framework import status
 from .models import Article
-from .serializers import ArticleSerializer
+from .serializers import ArticleSerializer, ArticleDetailSerializer
+from rest_framework import generics
 
+class ArticleList(generics.ListCreateAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
 
-class ArticleList(APIView):
-
-    def get(self, request):
-        articles = Article.objects.all()
-        serializer = ArticleSerializer(articles, many=True)
-        print(serializer)
-        return Response(serializer.data)
+class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
+        queryset = Article.objects.all()
+        serializer_class = ArticleDetailSerializer
