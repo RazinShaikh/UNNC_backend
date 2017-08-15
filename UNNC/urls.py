@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^activity/$', views.ArticleList.as_view()),
     url(r'^activity/(?P<pk>[0-9]+)/$', views.ArticleDetail.as_view()),
+    url(r'^thumbs/$', views.ArticleThumbnails.as_view()),
 ]
 
 if settings.DEBUG:
